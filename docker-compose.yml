@@ -53,3 +53,15 @@ services:
         - "1:1433"
     networks:
         - irinetwork
+
+  iriwebapp:
+    container_name: iriwebapp
+    image: iriwebapp
+    build:
+      context: .
+      dockerfile: WebAppAngularClient/Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./WebAppAngularClient:/project
+      - /project/node_modules 
