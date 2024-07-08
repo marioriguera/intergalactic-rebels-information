@@ -10,6 +10,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["ConfigsWebApi/ConfigsWebApi.csproj", "ConfigsWebApi/"]
+COPY ["ConfigsApplication/ConfigsApplication.csproj", "ConfigsApplication/"]
+COPY ["ConfigsDomain/ConfigsDomain.csproj", "ConfigsDomain/"]
+COPY ["ConfigsInfraestructure/ConfigsInfraestructure.csproj", "ConfigsInfraestructure/"]
 RUN dotnet restore "./ConfigsWebApi/ConfigsWebApi.csproj"
 COPY . .
 WORKDIR "/src/ConfigsWebApi"
