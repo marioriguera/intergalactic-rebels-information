@@ -82,6 +82,9 @@ dotnet_diagnostic.SA1643.severity = warning
 dotnet_diagnostic.SA1600.severity = warning
 dotnet_diagnostic.SA1601.severity = warning
 dotnet_diagnostic.SA1602.severity = warning
+dotnet_diagnostic.SA1210.severity = none
+dotnet_diagnostic.SA1309.severity = none
+dotnet_diagnostic.SA1101.severity = none
 
 [*.vb]
 #### Estilos de nomenclatura ####
