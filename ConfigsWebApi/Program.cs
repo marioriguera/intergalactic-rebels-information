@@ -1,4 +1,5 @@
 using ConfigsApplication;
+using ConfigsInfraestructure;
 
 namespace ConfigsWebApi;
 
@@ -17,23 +18,36 @@ public class Program
 
         // Dependencies injections by layers.
         builder.Services.AddPresentation()
-                        .AddApplication();
+                        .AddApplication()
+                        .AddInfraestructure(DecideWichEnviromentConfigurationToUse(builder))
+                        ;
 
         var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
-
+        app.ConfigureWebApplication();
         app.Run();
+    }
+
+    /// <summary>
+    /// Decides which environment configuration to use based on the application's environment.
+    /// </summary>
+    /// <param name="builder">The web application builder.</param>
+    /// <returns>The appropriate configuration root.</returns>
+    private static IConfigurationRoot DecideWichEnviromentConfigurationToUse(WebApplicationBuilder builder)
+    {
+        if (builder.Environment.IsDevelopment()) return BuildConfigurationRoot();
+
+        return BuildConfigurationRoot("appsettings.json");
+    }
+
+    /// <summary>
+    /// Builds the configuration root from the specified JSON file.
+    /// </summary>
+    /// <param name="fileName">The name of the JSON file to use. Defaults to "appsettings.Development.json".</param>
+    /// <returns>The built configuration root.</returns>
+    private static IConfigurationRoot BuildConfigurationRoot(string fileName = "appsettings.Development.json")
+    {
+        return new ConfigurationBuilder()
+            .AddJsonFile(fileName)
+            .Build();
     }
 }

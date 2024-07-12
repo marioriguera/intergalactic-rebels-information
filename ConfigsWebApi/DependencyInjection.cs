@@ -1,4 +1,6 @@
-﻿namespace ConfigsWebApi;
+﻿using ConfigsWebApi.Middlewares;
+
+namespace ConfigsWebApi;
 
 /// <summary>
 /// Provides extension methods for adding presentation layer dependencies.
@@ -19,6 +21,29 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
+        services.AddTransient<GlobalExceptionHandlingMiddleware>();
+
         return services;
+    }
+
+    /// <summary>
+    /// Configures the web application with the necessary middleware and endpoints.
+    /// </summary>
+    /// <param name="app">The web application to configure.</param>
+    /// <returns>The configured web application.</returns>
+    public static WebApplication ConfigureWebApplication(this WebApplication app)
+    {
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+        app.MapControllers();
+
+        return app;
     }
 }
