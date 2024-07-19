@@ -1,5 +1,5 @@
 ﻿using ConfigsApplication.Abstracts;
-using ConfigsApplication.HomeView.Common;
+using ConfigsApplication.HomeView.Common.DTOs;
 
 namespace ConfigsApplication.HomeView.GetAll;
 
@@ -7,6 +7,6 @@ namespace ConfigsApplication.HomeView.GetAll;
 /// Represents a query to get all home slider configurations.
 /// </summary>
 public sealed record GetAllHomeSliderQuery()
-    : IQuery<IReadOnlyList<HomeSlideConfigResponse>>
+    : IQuery<IReadOnlyList<HomeSliderConfigResponse>>
 {
 }

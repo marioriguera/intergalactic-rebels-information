@@ -1,4 +1,4 @@
-﻿using ConfigsApplication.HomeView.Common;
+﻿using ConfigsApplication.HomeView.Common.DTOs;
 using ConfigsApplication.HomeView.GetAll;
 
 namespace ConfigsWebApi.Controllers;
@@ -51,7 +51,7 @@ public class HomeConfigsController : ApiController
 
     [HttpPut]
     [Route("edit-slide-config:{id}")]
-    public async Task<IActionResult> EditOneConfig(int id, [FromBody] HomeSlideConfigRequest configRequest)
+    public async Task<IActionResult> EditOneConfig(int id, [FromBody] HomeSliderConfigRequest configRequest)
     {
         return Ok();
     }

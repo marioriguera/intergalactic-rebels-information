@@ -1,17 +1,17 @@
 ﻿using ConfigsApplication.Abstracts;
-using ConfigsApplication.HomeView.Common;
+using ConfigsApplication.HomeView.Common.DTOs;
 
 namespace ConfigsApplication.HomeView.GetAll;
 
-public class GetAllHomeSliderQueryHandler : IQueryHandler<GetAllHomeSliderQuery, IReadOnlyList<HomeSlideConfigResponse>>
+public class GetAllHomeSliderQueryHandler : IQueryHandler<GetAllHomeSliderQuery, IReadOnlyList<HomeSliderConfigResponse>>
 {
-    public async Task<ErrorOr<IReadOnlyList<HomeSlideConfigResponse>>> Handle(GetAllHomeSliderQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<IReadOnlyList<HomeSliderConfigResponse>>> Handle(GetAllHomeSliderQuery request, CancellationToken cancellationToken)
     {
-        var list = new List<HomeSlideConfigResponse>()
+        var list = new List<HomeSliderConfigResponse>()
         {
-            new HomeSlideConfigResponse(id: Guid.NewGuid(), src: "newsrc1", alt: "newalt1"),
-            new HomeSlideConfigResponse(id: Guid.NewGuid(), src: "newsrc2", alt: "newalt2"),
-            new HomeSlideConfigResponse(id: Guid.NewGuid(), src: "newsrc3", alt: "newalt3"),
+            new HomeSliderConfigResponse(id: Guid.NewGuid(), src: "newsrc1", alt: "newalt1"),
+            new HomeSliderConfigResponse(id: Guid.NewGuid(), src: "newsrc2", alt: "newalt2"),
+            new HomeSliderConfigResponse(id: Guid.NewGuid(), src: "newsrc3", alt: "newalt3"),
         };
 
         return list;
