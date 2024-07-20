@@ -5,7 +5,8 @@ networks:
 
 services:
   rebelswebapi:
-    image: ${DOCKER_REGISTRY-}rebelswebapi
+    image: rebelswebapi
+    container_name: "rebelswebapi"
     build:
       context: .
       dockerfile: RebelsWebApi/Dockerfile
@@ -18,7 +19,8 @@ services:
         - ms-sql-server 
 
   securitywebapi:
-    image: ${DOCKER_REGISTRY-}securitywebapi
+    image: securitywebapi
+    container_name: "securitywebapi"
     build:
       context: .
       dockerfile: SecurityWebApi/Dockerfile
@@ -31,7 +33,8 @@ services:
         - ms-sql-server
 
   configswebapi:
-    image: ${DOCKER_REGISTRY-}configswebapi
+    image: configswebapi
+    container_name: "configswebapi"
     build:
       context: .
       dockerfile: ConfigsWebApi/Dockerfile
@@ -44,6 +47,7 @@ services:
         - ms-sql-server
 
   ms-sql-server:
+    container_name: "ms-sql-server"
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: "Y"
@@ -53,3 +57,15 @@ services:
         - "1:1433"
     networks:
         - irinetwork
+
+  iriwebapp:
+    container_name: iriwebapp
+    image: iriwebapp
+    build:
+      context: .
+      dockerfile: WebAppAngularClient/Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./WebAppAngularClient:/project
+      - /project/node_modules 

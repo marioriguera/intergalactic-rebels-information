@@ -161,6 +161,29 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   https://localhost:5001/swagger/index.html
 ```
 
+## Entity Frameworks commands
+
+**To remember** :)
+
+### Put Migrations folder inside of Persistence folder
+
+```bash
+dotnet ef migrations add InitialMigration --output-dir Persistence/Migrations
+```
+
+## NuGets packages used
+
+- MediatR [NuGet](https://www.nuget.org/packages/MediatR), [GitHub](https://github.com/jbogard/MediatR)
+- ErrorOr [NuGet](https://www.nuget.org/packages/ErrorOr), [GitHub](https://github.com/amantinband/error-or)
+- FluentValidation [NuGet](https://www.nuget.org/packages/FluentValidation), [GitHub](https://github.com/FluentValidation/FluentValidation)
+- FluentValidation.AspNetCore [NuGet](https://www.nuget.org/packages/FluentValidation.AspNetCore), [GitHub](https://github.com/FluentValidation/FluentValidation.AspNetCore)
+- Microsoft.EntityFrameworkCore [NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore), [GitHub](https://github.com/dotnet/efcore), [Microsoft](https://learn.microsoft.com/en-us/ef/core/)
+- Microsoft.EntityFrameworkCore.SqlServer [NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+- Microsoft.EntityFrameworkCore.Design [NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design)
+- Scrutor [NuGet](https://www.nuget.org/packages/Scrutor), [GitHub](https://github.com/khellang/Scrutor)
+- Quartz [NuGet](https://www.nuget.org/packages/Quartz), [GitHub](https://github.com/quartznet/quartznet), [ProjectWebPage](https://www.quartz-scheduler.net/)
+- Quartz.Extensions.Hosting [NuGet](https://www.nuget.org/packages/Quartz.Extensions.Hosting)
+
 ---
 
 <p align="center">
