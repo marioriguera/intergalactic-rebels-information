@@ -1,4 +1,5 @@
-﻿using ConfigsWebApi.Middlewares;
+﻿using ConfigsInfraestructure.Extensions;
+using ConfigsWebApi.Middlewares;
 
 namespace ConfigsWebApi;
 
@@ -37,6 +38,7 @@ public static class DependencyInjection
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.ApplyMigration();
         }
 
         app.UseHttpsRedirection();
