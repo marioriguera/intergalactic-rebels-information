@@ -1,1 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+* Global variables
+*/
+$primary-color-palette: #f75b31;
+$secondary-color-palette: #26547c;
+$tertiary-color-palette: #bbbdf6;
+$fourthy-color-palette: #06d6a0;
+$accent-color-palette: #f52052;
+$warning-color-palette: #ffd166;
+$neutral-color-palette: white;
+$dark-color-palette: #36382e;
+
+html,
+body {
+  height: 100%;
+  background-color: $neutral-color-palette;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-y: scroll;
+}
+
+.primary-background-color {
+  background-color: $primary-color-palette !important;
+  color: $neutral-color-palette !important;
+}
+
+.secondary-background-color {
+  background-color: $secondary-color-palette !important;
+  color: $dark-color-palette !important;
+}
+
+.accent-background-color {
+  background-color: $accent-color-palette !important;
+  color: $neutral-color-palette !important;
+}
+
+.warning-background-color {
+  background-color: $warning-color-palette !important;
+  color: $neutral-color-palette !important;
+}
+
+.neutral-background-color {
+  background-color: $neutral-color-palette !important;
+  color: $dark-color-palette !important;
+}
+
+.dark-background-color {
+  background-color: $dark-color-palette !important;
+  color: $neutral-color-palette !important;
+}
+
+/*
+* Scroll bar css
+*/
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+  border-radius: 10px; /* Round the corners of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scroll thumb */
+  border-radius: 10px; /* Round the corners of the scroll thumb */
+  border: 3px solid #f1f1f1; /* Padding around the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the scroll thumb on hover */
+}

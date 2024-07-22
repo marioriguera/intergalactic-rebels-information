@@ -1,0 +1,15 @@
+@import './../../../../../styles.scss';
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.button-text {
+    margin: 0;
+    padding-left: 1rem;
+    padding-top:  0.3rem;
+    font-size: 1.5rem;
+    color: $neutral-color-palette;
+}

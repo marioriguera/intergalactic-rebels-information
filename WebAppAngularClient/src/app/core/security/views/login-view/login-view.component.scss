@@ -1,0 +1,21 @@
+@import './../../../../../styles.scss';
+
+.custom-shape-divider-top {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.5px);
+    height: 155px;
+}
+
+.custom-shape-divider-top .shape-fill {
+    fill: $primary-color-palette !important;
+}
