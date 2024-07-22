@@ -1,0 +1,23 @@
+@import "./../../../../styles.scss";
+
+.my-carousel {
+  max-height: 800px;
+}
+
+.my-slide-button-carousel {
+  margin-top: calc(100vh - 80vh) !important;
+}
+
+.my-carousel,
+h5,
+p,
+button {
+  color: $neutral-color-palette !important;
+  max-height: 50%;
+}
+
+.my-carousel,
+img {
+  position: static;
+  max-height: 800px;
+}

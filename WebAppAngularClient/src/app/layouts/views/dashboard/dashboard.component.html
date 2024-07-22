@@ -1,0 +1,20 @@
+<div class="pt-0 mt-0">
+    <div *ngIf="dashboardModelVar.Carousel.CanShowTheCarousel" id="carouselIdentifier" class="my-carousel carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active"
+                *ngFor="let carouselItem of dashboardModelVar.Carousel.CarouselCollection">
+                <img src="{{carouselItem.Src}}" class="d-block w-100" alt="{{carouselItem.Alt}}">
+            </div>
+        </div>
+        <button class="carousel-control-prev my-slide-button-carousel" type="button" data-bs-target="#carouselIdentifier"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">{{dashboardModelVar.Carousel.PreviousButtonLabel}}</span>
+        </button>
+        <button class="carousel-control-next my-slide-button-carousel" type="button" data-bs-target="#carouselIdentifier"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">{{dashboardModelVar.Carousel.NextButtonLabel}}</span>
+        </button>
+    </div>
+</div>
