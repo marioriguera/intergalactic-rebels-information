@@ -1,5 +1,8 @@
-﻿using ConfigsInfraestructure.Extensions;
+﻿using System.Reflection;
+using ConfigsInfraestructure.Extensions;
 using ConfigsWebApi.Middlewares;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ConfigsWebApi;
 
@@ -20,7 +23,11 @@ public static class DependencyInjection
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(
+                c =>
+                {
+                    ConfigureSwaggerDoc(c);
+                });
 
         services.AddTransient<GlobalExceptionHandlingMiddleware>();
 
@@ -47,5 +54,28 @@ public static class DependencyInjection
         app.MapControllers();
 
         return app;
+    }
+
+    /// <summary>
+    /// Configures the Swagger documentation for the API.
+    /// </summary>
+    /// <param name="options">The <see cref="SwaggerGenOptions"/> used to configure Swagger.</param>
+    private static void ConfigureSwaggerDoc(SwaggerGenOptions options)
+    {
+        options.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Title = "IRI Configurations Web Api",
+            Version = "v1",
+            Description = "An ASP.NET Core Web API for managing the configurations for all clients to serve.",
+            Contact = new OpenApiContact
+            {
+                Name = "Mario David Riguera Castillo",
+                Url = new Uri("https://www.linkedin.com/in/mario-david-riguera-castillo/"),
+            },
+        });
+
+        // Using System.Reflection;
+        var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     }
 }

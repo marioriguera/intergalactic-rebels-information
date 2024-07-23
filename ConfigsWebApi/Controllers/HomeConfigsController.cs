@@ -1,30 +1,53 @@
-﻿using ConfigsApplication.HomeView.Common.DTOs;
-using ConfigsApplication.HomeView.GetAll;
+﻿using ConfigsApplication.HomeView.GetAll;
 
 namespace ConfigsWebApi.Controllers;
 
+/// <summary>
+/// Controller for managing home view configurations.
+/// </summary>
 [Route("home-view-configs")]
 public class HomeConfigsController : ApiController
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HomeConfigsController"/> class.
+    /// </summary>
+    /// <param name="mediator">The mediator to handle queries and commands.</param>
     public HomeConfigsController(ISender mediator)
         : base(mediator)
     {
     }
 
-    [HttpGet]
-    [Route("all-configs")]
-    public async Task<IActionResult> Index()
-    {
-        return Ok();
-    }
-
-    [HttpGet]
-    [Route("by-id:{id}")]
-    public async Task<IActionResult> Details(int id)
-    {
-        return Ok();
-    }
-
+    /// <summary>
+    /// Gets all home slide configurations.
+    /// </summary>
+    /// <returns>
+    /// An <see cref="IActionResult"/> representing the result of the operation.
+    /// Returns a 200 OK response with the list of configurations if successful,
+    /// or a 500 Problem response if there are errors.
+    /// </returns>
+    /// <remarks>
+    /// Example response:
+    ///
+    /// ```json
+    ///  [
+    ///    {
+    ///        "id": "e7bc13e9-0e2a-4ad1-83ae-1130c3862b3c",
+    ///        "src": "https://wallpapersmug.com/download/3840x2160/d06c64/starry-space-milky-way-stars.jpg",
+    ///        "alt": "Wallpaper start"
+    ///    },
+    ///    {
+    ///        "id": "c4438db0-7b74-4f66-b37b-7259b1273c4a",
+    ///        "src": "https://wallpapers.com/images/hd/4k-space-glowing-ring-es4tss2e6i1dzfj6.jpg",
+    ///        "alt": "Glowing ring"
+    ///    },
+    ///    {
+    ///        "id": "9444b29d-f459-4ff2-bfc6-dacea6543288",
+    ///        "src": "https://wallpapers.com/images/hd/4k-universe-eta-carinae-nebula-2iqpijwfzmw3z4al.jpg",
+    ///        "alt": "Universe nebulosa"
+    ///    }
+    ///  ]
+    /// ```
+    /// </remarks>
     [HttpGet]
     [Route("all-slide-home-configs")]
     public async Task<IActionResult> GetAllHomeSlideConfigurations()
@@ -33,76 +56,5 @@ public class HomeConfigsController : ApiController
         return allSlidesConfigs.Match(
                 configs => Ok(configs),
                 errors => Problem(errors));
-    }
-
-    [HttpPost]
-    [Route("create")]
-    public async Task<IActionResult> Create([FromBody] IFormCollection collection)
-    {
-        try
-        {
-            return Ok(nameof(Index));
-        }
-        catch
-        {
-            return Ok();
-        }
-    }
-
-    [HttpPut]
-    [Route("edit-slide-config:{id}")]
-    public async Task<IActionResult> EditOneConfig(int id, [FromBody] HomeSliderConfigRequest configRequest)
-    {
-        return Ok();
-    }
-
-    [HttpPatch]
-    [Route("edit-slide-src-config:{id}")]
-    public async Task<IActionResult> EditSlideSourceConfig(int id, string src)
-    {
-        return Ok();
-    }
-
-
-    [HttpPatch]
-    [Route("edit-slide-alt-config:{id}")]
-    public async Task<IActionResult> EditSlideAltConfig(int id, string alt)
-    {
-        return Ok();
-    }
-
-    [HttpPut]
-    [Route("edit-all-slides-configs")]
-    public async Task<IActionResult> EditAllSlidesConfigs([FromBody] IFormCollection collection)
-    {
-        try
-        {
-            return Ok(nameof(Index));
-        }
-        catch
-        {
-            return Ok();
-        }
-    }
-
-    [HttpDelete]
-    [Route("delete-by-id:{id}")]
-    public async Task<IActionResult> DeleteConfigById(int id)
-    {
-        return Ok();
-    }
-
-    [HttpDelete]
-    [Route("delete-all-configs")]
-    public async Task<IActionResult> DeleteAllConfigs()
-    {
-        try
-        {
-            return Ok(nameof(Index));
-        }
-        catch
-        {
-            return Ok();
-        }
     }
 }
