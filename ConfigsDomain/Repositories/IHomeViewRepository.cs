@@ -4,5 +4,5 @@ namespace ConfigsDomain.Repositories;
 
 public interface IHomeViewRepository
 {
-    Task<IReadOnlyList<HomeViewSlider>> GetAllHomeViewSlidersConfigurations();
+    Task<IReadOnlyList<HomeViewSlider>> GetAllHomeViewSlidersConfigurationsAsync(CancellationToken cancellationToken = default);
 }

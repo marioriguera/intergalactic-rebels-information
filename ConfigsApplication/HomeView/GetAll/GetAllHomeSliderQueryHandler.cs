@@ -1,19 +1,25 @@
-﻿using ConfigsApplication.Abstracts;
+﻿using AutoMapper;
+using ConfigsApplication.Abstracts;
 using ConfigsApplication.HomeView.Common.DTOs;
+using ConfigsDomain.Repositories;
 
 namespace ConfigsApplication.HomeView.GetAll;
 
-public class GetAllHomeSliderQueryHandler : IQueryHandler<GetAllHomeSliderQuery, IReadOnlyList<HomeSliderConfigResponse>>
+internal sealed class GetAllHomeSliderQueryHandler : IQueryHandler<GetAllHomeSliderQuery, IReadOnlyList<HomeSliderConfigResponse>>
 {
+    private readonly IHomeViewRepository _homeViewRepository;
+    private readonly IMapper _mapper;
+
+    public GetAllHomeSliderQueryHandler(IHomeViewRepository homeViewRepository, IMapper mapper)
+    {
+        _homeViewRepository = homeViewRepository;
+        _mapper = mapper;
+    }
+
     public async Task<ErrorOr<IReadOnlyList<HomeSliderConfigResponse>>> Handle(GetAllHomeSliderQuery request, CancellationToken cancellationToken)
     {
-        var list = new List<HomeSliderConfigResponse>()
-        {
-            new HomeSliderConfigResponse(id: Guid.NewGuid(), src: "newsrc1", alt: "newalt1"),
-            new HomeSliderConfigResponse(id: Guid.NewGuid(), src: "newsrc2", alt: "newalt2"),
-            new HomeSliderConfigResponse(id: Guid.NewGuid(), src: "newsrc3", alt: "newalt3"),
-        };
+        var result = await _homeViewRepository.GetAllHomeViewSlidersConfigurationsAsync(cancellationToken);
 
-        return list;
+        return result.Select(x => _mapper.Map<HomeSliderConfigResponse>(x)).ToList();
     }
 }
