@@ -45,6 +45,7 @@ public static class DependencyInjection
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseDeveloperExceptionPage();
             app.ApplyMigration();
         }
 

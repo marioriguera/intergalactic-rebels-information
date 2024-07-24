@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ConfigsInfraestructure;
 
@@ -36,17 +34,43 @@ public static class DependencyInjection
                 optionsBuilder.ConfigureOptionsBuilderUsingSql(connection);
             });
 
+        services.AddRedisCache(configuration);
+
         return services;
     }
 
+    /// <summary>
+    /// Configures the <see cref="DbContextOptionsBuilder"/> to use SQL Server with specified retry options.
+    /// </summary>
+    /// <param name="dbContextOptions">The <see cref="DbContextOptionsBuilder"/> to configure.</param>
+    /// <param name="connectionString">The connection string for the SQL Server database.</param>
+    /// <returns>The configured <see cref="DbContextOptionsBuilder"/>.</returns>
     public static DbContextOptionsBuilder ConfigureOptionsBuilderUsingSql(this DbContextOptionsBuilder dbContextOptions, string connectionString)
     {
-        dbContextOptions.UseSqlServer(connectionString,
-                            sqlOptions => sqlOptions.EnableRetryOnFailure(
+        dbContextOptions.UseSqlServer(
+            connectionString,
+            sqlOptions => sqlOptions.EnableRetryOnFailure(
                                 maxRetryCount: 5,
                                 maxRetryDelay: TimeSpan.FromSeconds(30),
                                 errorNumbersToAdd: null))
                         .EnableDetailedErrors();
         return dbContextOptions;
+    }
+
+    /// <summary>
+    /// Adds Redis cache services to the specified <see cref="IServiceCollection"/>.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
+    /// <param name="configuration">The <see cref="IConfiguration"/> containing the Redis configuration.</param>
+    /// <returns>The <see cref="IServiceCollection"/> with the Redis cache services added.</returns>
+    private static IServiceCollection AddRedisCache(this IServiceCollection services, IConfiguration configuration)
+    {
+        var redisConnectionString = configuration["Redis:ConnectionString"];
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConnectionString;
+        });
+
+        return services;
     }
 }
