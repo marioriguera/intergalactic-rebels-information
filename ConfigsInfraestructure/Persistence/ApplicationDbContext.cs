@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ConfigsDomain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConfigsInfraestructure.Persistence;
 
@@ -15,6 +16,11 @@ internal class ApplicationDbContext : DbContext
         : base(options)
     {
     }
+
+    /// <summary>
+    /// Gets or sets the DbSet for HomeViewSlider configurations.
+    /// </summary>
+    public DbSet<HomeViewSlider> HomeViewSlidersConfigs { get; set; }
 
     /// <summary>
     /// Configures the model creating process by applying entity configurations from the assembly.

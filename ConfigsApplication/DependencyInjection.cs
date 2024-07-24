@@ -1,4 +1,5 @@
 ﻿using ConfigsApplication.Commons;
+using ConfigsApplication.HomeView.Common.Mappings;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,6 +27,8 @@ public static class DependencyInjection
                 typeof(ValidationBehavior<,>));
 
         services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyReference>();
+
+        services.AddAutoMapper(typeof(HomeSliderMappingProfile));
 
         return services;
     }
