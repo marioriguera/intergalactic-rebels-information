@@ -88,6 +88,7 @@ dotnet_diagnostic.SA1101.severity = none
 dotnet_diagnostic.SA1503.severity = none
 dotnet_diagnostic.SA1000.severity = none
 dotnet_diagnostic.SA1313.severity = none
+dotnet_diagnostic.SA1010.severity = none
 
 [*.vb]
 #### Estilos de nomenclatura ####
@@ -142,3 +143,4 @@ end_of_line = crlf
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 dotnet_style_readonly_field = true:suggestion
+dotnet_diagnostic.CA1860.severity = none

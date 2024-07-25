@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ConfigsInfraestructure.Extensions;
+using ConfigsInfraestructure.Persistence.Extensions;
 using ConfigsWebApi.Middlewares;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;

@@ -10,12 +10,19 @@ namespace ConfigsWebApi.Controllers;
 [ApiController]
 public abstract class ApiController : ControllerBase
 {
-    protected readonly ISender _mediator;
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ApiController"/> class.
+    /// </summary>
+    /// <param name="mediator">The mediator used to send commands and queries.</param>
     protected ApiController(ISender mediator)
     {
-        _mediator = mediator;
+        Mediator = mediator;
     }
+
+    /// <summary>
+    /// Gets the mediator used to send commands and queries.
+    /// </summary>
+    protected ISender Mediator { get; init; }
 
     /// <summary>
     /// Returns a problem result based on a list of errors.

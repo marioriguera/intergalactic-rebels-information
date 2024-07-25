@@ -12,8 +12,7 @@ public interface IHomeViewRepository
     /// </summary>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>
-    /// A task that represents the asynchronous operation.
     /// The task result contains a read-only list of <see cref="HomeViewSlider"/>.
     /// </returns>
-    Task<IReadOnlyList<HomeViewSlider>> GetAllHomeViewSlidersConfigurationsAsync(CancellationToken cancellationToken = default);
+    IReadOnlyList<HomeViewSlider> GetAllHomeViewSlidersConfigurations(CancellationToken cancellationToken = default);
 }

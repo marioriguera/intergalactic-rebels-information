@@ -8,7 +8,8 @@ namespace ConfigsApplication.HomeView.GetAll;
 /// <summary>
 /// Handles queries to retrieve all home slider configurations.
 /// </summary>
-internal sealed class GetAllHomeSliderQueryHandler : IQueryHandler<GetAllHomeSliderQuery, IReadOnlyList<HomeSliderConfigResponse>>
+internal sealed class GetAllHomeSliderQueryHandler
+    : IQueryHandler<GetAllHomeSliderQuery, IReadOnlyList<HomeSliderConfigResponse>>
 {
     private readonly IHomeViewRepository _homeViewRepository;
     private readonly IMapper _mapper;
@@ -30,9 +31,11 @@ internal sealed class GetAllHomeSliderQueryHandler : IQueryHandler<GetAllHomeSli
     /// <param name="request">The request to get all home slider configurations.</param>
     /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
     /// <returns>
-    /// A task that represents the asynchronous operation. 
+    /// A task that represents the asynchronous operation.
     /// The task result contains a list of <see cref="HomeSliderConfigResponse"/> wrapped in an <see cref="ErrorOr{T}"/>.
     /// </returns>
     public async Task<ErrorOr<IReadOnlyList<HomeSliderConfigResponse>>> Handle(GetAllHomeSliderQuery request, CancellationToken cancellationToken)
-        => (await _homeViewRepository.GetAllHomeViewSlidersConfigurationsAsync(cancellationToken)).Select(x => _mapper.Map<HomeSliderConfigResponse>(x)).ToList();
+        => await Task.Run(() => _homeViewRepository.GetAllHomeViewSlidersConfigurations(cancellationToken)
+                                                   .Select(x => _mapper.Map<HomeSliderConfigResponse>(x))
+                                                   .ToList());
 }
