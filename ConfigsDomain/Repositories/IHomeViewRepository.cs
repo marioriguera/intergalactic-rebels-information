@@ -8,11 +8,9 @@ namespace ConfigsDomain.Repositories;
 public interface IHomeViewRepository
 {
     /// <summary>
-    /// Retrieves all configurations for home view sliders.
+    /// Gets all configurations for home view sliders.
     /// </summary>
-    /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
-    /// <returns>
-    /// The task result contains a read-only list of <see cref="HomeViewSlider"/>.
-    /// </returns>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>A read-only list of <see cref="HomeViewSlider"/> configurations.</returns>
     IReadOnlyList<HomeViewSlider> GetAllHomeViewSlidersConfigurations(CancellationToken cancellationToken = default);
 }
