@@ -52,7 +52,7 @@ public class HomeConfigsController : ApiController
     [Route("all-slide-home-configs")]
     public async Task<IActionResult> GetAllHomeSlideConfigurations()
     {
-        var allSlidesConfigs = await _mediator.Send(new GetAllHomeSliderQuery());
+        var allSlidesConfigs = await Mediator.Send(new GetAllHomeSliderQuery());
         return allSlidesConfigs.Match(
                 configs => Ok(configs),
                 errors => Problem(errors));

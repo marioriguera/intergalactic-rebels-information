@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ConfigsInfraestructure.Extensions;
+using ConfigsInfraestructure.Persistence.Extensions;
 using ConfigsWebApi.Middlewares;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -45,6 +45,7 @@ public static class DependencyInjection
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseDeveloperExceptionPage();
             app.ApplyMigration();
         }
 
