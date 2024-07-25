@@ -7,7 +7,7 @@ using Microsoft.Extensions.Caching.Distributed;
 namespace ConfigsInfraestructure.Persistence.Repositories;
 
 /// <summary>
-/// Repository for accessing home view data from the database.
+/// Repository for accessing home view data from the database and caching it in Redis.
 /// </summary>
 internal sealed class HomeViewRepository : IHomeViewRepository
 {
@@ -19,19 +19,14 @@ internal sealed class HomeViewRepository : IHomeViewRepository
     /// Initializes a new instance of the <see cref="HomeViewRepository"/> class.
     /// </summary>
     /// <param name="context">The database context.</param>
+    /// <param name="cache">The Redis distributed cache instance.</param>
     public HomeViewRepository(ApplicationDbContext context, IDistributedCache cache)
     {
         _context = context;
         _cache = cache;
     }
 
-    /// <summary>
-    /// Retrieves all configurations for home view sliders from the database.
-    /// </summary>
-    /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
-    /// <returns>
-    /// The task result contains a read-only list of <see cref="HomeViewSlider"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public IReadOnlyList<HomeViewSlider> GetAllHomeViewSlidersConfigurations(CancellationToken cancellationToken = default)
     {
         List<HomeViewSlider> homeViewSliders = [];
